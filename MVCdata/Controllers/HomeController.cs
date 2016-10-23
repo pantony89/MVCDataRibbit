@@ -9,9 +9,9 @@ namespace MVCdata.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index()
+        public String Index()
         {
-            return View();
+            return "welcome To your first Act";
         }
     }
 }
