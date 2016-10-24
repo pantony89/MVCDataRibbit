@@ -1,41 +1,55 @@
-﻿using System;
+﻿using FirstController.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MVCdata.Controllers
+namespace FirstController.Controllers
 {
     [RoutePrefix("products")]
     public class ProductsController : Controller
     {
-        // GET: Products
-        [Route("{category}/{id}")]
-        public string Index(string category,string id)
+        
+        public ActionResult Index()
         {
-            if (!string.IsNullOrEmpty(category))
-            {
-                if (!string.IsNullOrEmpty(id))
-                {
-                    return "Product Category is:" + category + "price :" + id;
-                }
-                else
-                {
-                    return "product category is :" + category;
-                }
-            }
-            return "This is all the product";
+            var repo = new ProductRepository();
+
+            return View(repo.All());
         }
 
-        [Route("~/name")]
-        public string name()
+        [Route("{category}")]
+        public ActionResult ShowCategory(string category)
         {
-            return "Hi are you Antony";
+            var repo = new ProductRepository();
+
+            return View(repo.GetByCategory(category));
+
         }
-        [Route("~/for-sale/{id?}")]
-        public string forsale(string id)
+
+        [Route("{category}/{id:int}")]
+        public ActionResult Details(string category, int id, string format = null)
         {
-            return "These Products for Sale" + id;
+            var repo = new ProductRepository();
+            var product = repo.Find(p => p.Id == id);
+
+            if (product.Categories.Any(c => c.Name == category))
+            {
+                if (format == "json")
+                {
+                    return Json(product, JsonRequestBehavior.AllowGet);
+                }
+
+                return View(product);
+            }
+
+            return HttpNotFound();
+        }
+
+        [Route("~/for-sale/{category?}")]
+        public string Sale(string category)
+        {
+            return "these are the items for sale " + category;
         }
     }
 }

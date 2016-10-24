@@ -4,20 +4,24 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MVCdata.Controllers
+namespace FirstController.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+        //[Authorize]
+        public ActionResult Index(string id)
         {
             return View();
         }
 
-
-        public ActionResult foo()
+        public ActionResult Foo()
         {
-            return View();
+            return new HttpUnauthorizedResult();
+        }
+
+        public ActionResult Document(string id)
+        {
+            return File(@"C:\Users\Jeremy McPeak\Documents\Hello ActionResult.pdf", "application/pdf", "test.pdf");
         }
     }
 }
