@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "IndexPage";
+  
+
+    string name = "johny";
+
+
+}
+
+
+<div>
+    <p>This is the Sample page</p>
+    <h1>@name</h1>
+    @Html.Partial("_PartialPage");
+    <div>
+        @foreach (var charectoe in name)
+            {
+            <li>@charectoe</li>
+            @Html.Partial("_PartialPage");
+        }
+
+    </div>
+</div>

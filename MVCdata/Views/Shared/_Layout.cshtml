@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <p>Layout File Rendered</p>
+    <div>
+        @RenderBody()
+    </div>
+    @if(IsSectionDefined("Sidebar")){
+    <div>
+        @RenderSection("Sidebar",false)
+
+    </div>
+    }
+</body>
+</html>

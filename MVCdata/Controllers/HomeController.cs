@@ -9,15 +9,15 @@ namespace MVCdata.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public String Index()
+        public ActionResult Index()
         {
-            return "welcome To your first Act";
+            return View();
         }
 
-        
-        public string foo(string a)
+
+        public ActionResult foo()
         {
-            return "foo is here :" + a;
+            return View();
         }
     }
 }

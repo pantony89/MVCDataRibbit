@@ -25,8 +25,8 @@ namespace MVCdata.Controllers
                 }
             }
             return "This is all the product";
-
         }
+
         [Route("~/name")]
         public string name()
         {
