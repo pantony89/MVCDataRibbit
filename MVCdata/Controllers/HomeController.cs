@@ -13,5 +13,11 @@ namespace MVCdata.Controllers
         {
             return "welcome To your first Act";
         }
+
+        
+        public string foo(string a)
+        {
+            return "foo is here :" + a;
+        }
     }
 }
